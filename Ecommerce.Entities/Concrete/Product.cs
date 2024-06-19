@@ -13,10 +13,12 @@ public class Product : BaseEntity
     public decimal DiscountPrice { get; set; }
     public string Information { get; set; }
     public int Stock { get; set; }
+    public bool IsFeatured { get; set; }
     public int CategoryId { get; set; }
     public string UserId { get; set; }
     public Category Category { get; set; }
     public User User { get; set; }
     public List<Review> Reviews { get; set; }
+    public List<ProductPhoto> ProductPhotos { get; set; }
 
 }

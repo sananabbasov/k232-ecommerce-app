@@ -12,4 +12,5 @@ public class Category : BaseEntity
     public string BannerUrl { get; set; }
     public bool IsBanner { get; set; }
     public bool IsFeatured { get; set; }
+    public List<Product> Products { get; set; }
 }

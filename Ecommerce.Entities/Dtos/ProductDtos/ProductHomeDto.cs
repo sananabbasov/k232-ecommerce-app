@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Ecommerce.Entities.Dtos.ProductDtos;
+
+public class ProductHomeDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    public decimal DiscountPrice { get; set; }
+    public string PhotoUrl { get; set; }
+
+}
