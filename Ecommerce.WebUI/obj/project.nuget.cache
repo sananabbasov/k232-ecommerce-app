@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Q53kJiRi1ueJApXPT7N3PkgQ5QQHCvmyFmpKElpOCsSH0j3Bh1M+EuXPvsEPcP0ehjYL5F0+Lcw8VV5XzGZPuw==",
+  "dgSpecHash": "c2PO6RNkEWtEMStI9UVaiujUwJeBKfDikmMdOzIZ4Lejw/70cs7tFAOcL6flc39YOcC2XD+PtdVgRGo1v38RFg==",
   "success": true,
   "projectFilePath": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/Ecommerce.WebUI.csproj",
   "expectedPackageFiles": [
@@ -51,6 +51,8 @@
     "/Users/sanan/.nuget/packages/mongodb.driver/2.25.0/mongodb.driver.2.25.0.nupkg.sha512",
     "/Users/sanan/.nuget/packages/mongodb.driver.core/2.25.0/mongodb.driver.core.2.25.0.nupkg.sha512",
     "/Users/sanan/.nuget/packages/mongodb.libmongocrypt/1.8.2/mongodb.libmongocrypt.1.8.2.nupkg.sha512",
+    "/Users/sanan/.nuget/packages/npgsql/8.0.3/npgsql.8.0.3.nupkg.sha512",
+    "/Users/sanan/.nuget/packages/npgsql.entityframeworkcore.postgresql/8.0.4/npgsql.entityframeworkcore.postgresql.8.0.4.nupkg.sha512",
     "/Users/sanan/.nuget/packages/sharpcompress/0.30.1/sharpcompress.0.30.1.nupkg.sha512",
     "/Users/sanan/.nuget/packages/snappier/1.0.0/snappier.1.0.0.nupkg.sha512",
     "/Users/sanan/.nuget/packages/system.buffers/4.5.1/system.buffers.4.5.1.nupkg.sha512",

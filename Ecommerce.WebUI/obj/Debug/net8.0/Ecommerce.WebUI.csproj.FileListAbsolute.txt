@@ -97,3 +97,6 @@
 /Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/bin/Debug/net8.0/AutoMapper.dll
+/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/bin/Debug/net8.0/Npgsql.dll
+/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/obj/Debug/net8.0/Ecommerce.WebUI.sourcelink.json
