@@ -13,8 +13,8 @@ public class AppDbContext : IdentityDbContext<User>
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        // optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=K232ShopAppDb; User Id=SA; Password=Ehmed123; TrustServerCertificate=True;");
-        optionsBuilder.UseNpgsql("Server=testdb-do-user-14668122-0.c.db.ondigitalocean.com;Port=25060;Database=k232db;User Id=doadmin;Password=AVNS_rsUExsNCpNiGvqaWlY2;sslmode=Require;Trust Server Certificate=true;");
+        optionsBuilder.UseSqlServer("Server=127.0.0.1,1433;Database=K232ShopAppDb; User Id=SA; Password=Ehmed123; TrustServerCertificate=True;");
+        // optionsBuilder.UseNpgsql("Server=testdb-do-user-14668122-0.c.db.ondigitalocean.com;Port=25060;Database=k232db;User Id=doadmin;Password=AVNS_rsUExsNCpNiGvqaWlY2;sslmode=Require;Trust Server Certificate=true;");
 
     }
 

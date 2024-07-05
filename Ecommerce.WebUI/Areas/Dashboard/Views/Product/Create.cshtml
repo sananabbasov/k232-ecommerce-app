@@ -1,0 +1,111 @@
+@model ProductCreateDto;
+
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h3>Product Form</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productName">Name</label>
+                        <input asp-for="Name" class="form-control" id="productName" placeholder="Enter product name"
+                            required>
+                        <div class="invalid-feedback">
+                            Please enter a product name.
+                        </div>
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productPrice">Price</label>
+                        <input asp-for="Price" type="number" class="form-control" id="productPrice"
+                            placeholder="Enter product price" min="0" step="0.01" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid price.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="productDiscountPrice">Discount Price</label>
+                        <input asp-for="DiscountPrice" type="number" class="form-control" id="productDiscountPrice"
+                            placeholder="Enter product discount price" min="0" step="0.01">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="productStock">Stock</label>
+                        <input asp-for="Stock" type="number" class="form-control" id="productStock"
+                            placeholder="Enter product stock" min="0" required>
+                        <div class="invalid-feedback">
+                            Please enter the stock quantity.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productDescription">Description</label>
+                    <textarea asp-for="Description" class="form-control" id="productDescription" rows="3"
+                        placeholder="Enter product description" required></textarea>
+                    <div class="invalid-feedback">
+                        Please enter a product description.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productInformation">Information</label>
+                    <textarea asp-for="Information" class="form-control" id="productInformation" rows="3"
+                        placeholder="Enter additional product information"></textarea>
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="isFeatured">
+                    <label class="form-check-label" for="isFeatured">Is Featured</label>
+                </div>
+                <div class="form-group">
+                    <label for="categoryId">Category</label>
+                    <select name="CategoryId" class="form-control" id="categoryId" required>
+                        <!-- Dynamically populate options -->
+                        <option value="">Select a category</option>
+                        <option value="1">Category 1</option>
+                        <option value="2">Category 2</option>
+                        <!-- Add more categories as needed -->
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a category.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="productPhotos">Product Photos</label>
+                    <input name="images" type="file" class="form-control-file" id="productPhotos" multiple>
+                    <div class="container">
+                        <div id="images" class="row">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+<script>
+    let imgInp = document.getElementById("productPhotos")
+    let images = document.getElementById("images")
+    if (imgInp) {
+        imgInp.addEventListener("change", function () {
+            console.log(imgInp.files)
+            for (let i = 0; i < imgInp.files.length; i++) {
+                let file = imgInp.files[i]
+                let div = `
+                         <div class="col-3 mb-2">
+                                <img width="120" height="120" id="blah" src="${URL.createObjectURL(file)}" alt="your image" />
+                          </div>
+                `
+                images.innerHTML+= div
+            }
+        })
+    }
+
+
+
+    ClassicEditor
+        .create(document.querySelector('#productInformation'))
+</script>

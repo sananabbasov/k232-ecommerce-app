@@ -29,7 +29,13 @@ public class MappingProfile : Profile
         CreateMap<Category, CategoryBannerDto>();
 
         CreateMap<Product, ProductDetailDto>()
-            .ForMember(x=>x.PhotoUrl, z=>z.MapFrom(x=>x.ProductPhotos.Select(x=>x.Url).ToList()));
+            .ForMember(x => x.PhotoUrl, z => z.MapFrom(x => x.ProductPhotos.Select(x => x.Url).ToList()));
 
+
+        CreateMap<ProductCreateDto, Product>();
+
+        CreateMap<Product, ProductDashboardDto>()
+            .ForMember(x => x.PhotoUrl, y => y.MapFrom(x => x.ProductPhotos.FirstOrDefault().Url))
+            .ForMember(z => z.CategoryName, a => a.MapFrom(x => x.Category.Name));
     }
 }

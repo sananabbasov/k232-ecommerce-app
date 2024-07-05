@@ -2,11 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Amazon.Runtime.Internal;
 using AutoMapper;
 using Ecommerce.Business.Abstract;
+using Ecommerce.Core.Utilities.Results.Abstract;
+using Ecommerce.Core.Utilities.Results.Concrete.Error;
+using Ecommerce.Core.Utilities.Results.Concrete.Success;
 using Ecommerce.DataAccess.Abstract;
 using Ecommerce.Entities.Concrete;
 using Ecommerce.Entities.Dtos.ProductDtos;
+using Ecommerce.Entities.Enum;
+using Ecommerce.Entities.Payloads;
 
 namespace Ecommerce.Business.Concrete;
 
@@ -19,6 +25,34 @@ public class ProductManager : IProductService
     {
         _productDal = productDal;
         _mapper = mapper;
+    }
+
+    public IResult CreateProduct(ProductCreateDto productCreateDto)
+    {
+        try
+        {
+            var product = _mapper.Map<Product>(productCreateDto);
+            _productDal.Add(product);
+            return new SuccessResult();
+        }
+        catch (Exception e)
+        {
+            return new ErrorResult(e.Message);
+        }
+    }
+
+    public IDataResult<List<ProductDashboardDto>> GetDashboardProducts()
+    {
+        try
+        {
+            var products = _productDal.GetDashboardProducts();
+            var mapper = _mapper.Map<List<ProductDashboardDto>>(products);
+            return new SuccessDataResult<List<ProductDashboardDto>>(mapper);
+        }
+        catch (Exception e)
+        {
+            return new ErrorDataResult<List<ProductDashboardDto>>(e.Message);
+        }
     }
 
     public List<ProductHomeDto> GetHomeFeaturedProducts()
@@ -43,10 +77,19 @@ public class ProductManager : IProductService
         return mapper;
     }
 
+    public ProductPagination<ProductShopDto> GetShopPagination(int maxPrice, int categoryId, int currentPage, int sort, int minPrice = 0)
+    {
+        var result = _productDal.GetShopProducts(maxPrice, categoryId, currentPage, sort, minPrice);
+        var products = _mapper.Map<List<ProductShopDto>>(result.Products);
+        return new ProductPagination<ProductShopDto>(result.PageSize, result.CurrentPage, result.MaxPrice, result.MinPrice, result.CategoryId, result.Sort, products);
+    }
+
     public List<ProductShopDto> GetShopProducts(int maxPrice, int categoryId, int currentPage, int sort, int minPrice = 0)
     {
-        var products = _productDal.GetShopProducts(maxPrice, categoryId,  currentPage,  sort,  minPrice);
+        var products = _productDal.GetShopProducts(maxPrice, categoryId, currentPage, sort, minPrice);
         var res = _mapper.Map<List<ProductShopDto>>(products);
         return res;
     }
+
+
 }

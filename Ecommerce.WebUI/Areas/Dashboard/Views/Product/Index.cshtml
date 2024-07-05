@@ -1,0 +1,56 @@
+@model IEnumerable<ProductDashboardDto>
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">
+            <a asp-area="dashboard" asp-controller="product" asp-action="create"> Create</a>
+        </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Price</th>
+                        <th>CategoryName</th>
+                        <th>DiscountPrice</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Price</th>
+                        <th>CategoryName</th>
+                        <th>DiscountPrice</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+
+                    @foreach (var product in Model)
+                    {
+                        <tr>
+                            <th>@product.Name</th>
+                            <th>
+                                <img width="80" height="80" src="@product.PhotoUrl" />
+                            </th>
+                            <th>@product.Price</th>
+                            <th>@product.CategoryName</th>
+                            <th>@product.DiscountPrice</th>
+                            <th>
+                                <a href="" class="btn btn-warning">Update</a>
+                                <a href="" class="btn btn-danger">Delete</a>
+                            </th>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
