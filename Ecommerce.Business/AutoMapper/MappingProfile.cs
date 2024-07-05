@@ -31,5 +31,7 @@ public class MappingProfile : Profile
         CreateMap<Product, ProductDetailDto>()
             .ForMember(x=>x.PhotoUrl, z=>z.MapFrom(x=>x.ProductPhotos.Select(x=>x.Url).ToList()));
 
+
+        CreateMap<ProductCreateDto, Product>();
     }
 }

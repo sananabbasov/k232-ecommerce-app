@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Ecommerce.Business.Abstract;
+using Ecommerce.Entities.Dtos.ProductDtos;
+using Ecommerce.Entities.Enum;
+using Ecommerce.Entities.Payloads;
 using Ecommerce.WebUI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,8 +39,15 @@ public class ShopController : Controller
     }
 
 
-    public IActionResult Index()
+    public IActionResult Index(int maxPrice, int categoryId, int currentPage=1, int minPrice = 0, int pageSize=1,Sort sort= Sort.NONE)
     {
-        return View();
+        var products = _productService.GetShopPagination(maxPrice,categoryId,currentPage,(int)sort,minPrice);
+
+        ProductShopViewModel vm = new()
+        {
+            Pagination = products
+        };
+
+        return View(vm);
     }
 }

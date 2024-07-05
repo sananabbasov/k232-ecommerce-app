@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Ecommerce.Core.DataAccess.EntityFramework;
 using Ecommerce.DataAccess.Abstract;
 using Ecommerce.Entities.Concrete;
+using Ecommerce.Entities.Enum;
+using Ecommerce.Entities.Payloads;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.DataAccess.Concrete.EntityFramework;
@@ -33,13 +35,14 @@ public class EfProductDal : EfRepositoryBase<Product, AppDbContext>, IProductDal
         return products;
     }
 
-    public List<Product> GetShopProducts(int maxPrice, int categoryId, int currentPage, int sort,int minPrice=0)
+    public ProductPagination<Product> GetShopProducts(int maxPrice, int categoryId, int currentPage, int sort,int minPrice=0)
     {
 
         using var context = new AppDbContext();
-        
+        currentPage = currentPage == 0 ? 1 : currentPage;
         int skip = (currentPage - 1) * 9;
-        var products = context.Products.Where(x=>x.Price > minPrice && x.Price < maxPrice).Skip(skip).Take(9).Include(x=>x.ProductPhotos).OrderByDescending(x=>x.Id).Take(8).ToList();
-        return products;
+        var pageSize = context.Products.Count() / 9;
+        var products = context.Products.Skip(skip).Take(9).Include(x=>x.ProductPhotos).OrderByDescending(x=>x.Id).ToList();
+        return new ProductPagination<Product>(pageSize,currentPage,maxPrice,minPrice,categoryId,Sort.DESC,products);
     }
 }
