@@ -14,6 +14,8 @@ public interface IProductService
     List<ProductHomeDto> GetHomeRecentProducts();
     IResult CreateProduct(ProductCreateDto productCreateDto);
     IDataResult<List<ProductDashboardDto>> GetDashboardProducts();
+    IResult UpdateProduct(int id, ProductUpdateDto productUpdateDtos);
+    IDataResult<ProductUpdateDto> GetUpdatedProduct(int id);
     ProductDetailDto GetProductById(int id);
     List<ProductShopDto> GetShopProducts(int maxPrice, int categoryId, int currentPage, int sort, int minPrice = 0);
     ProductPagination<ProductShopDto> GetShopPagination(int maxPrice, int categoryId, int currentPage, int sort, int minPrice = 0);

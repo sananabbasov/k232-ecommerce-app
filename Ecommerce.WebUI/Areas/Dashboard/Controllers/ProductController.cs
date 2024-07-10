@@ -24,7 +24,7 @@ public class ProductController : Controller
 
     public IActionResult Index()
     {
-        var products  = _productService.GetDashboardProducts();
+        var products = _productService.GetDashboardProducts();
         return View(products.Data);
     }
 
@@ -35,7 +35,7 @@ public class ProductController : Controller
 
     [HttpPost]
     public IActionResult Create(ProductCreateDto productCreate, List<IFormFile> images)
-    {  
+    {
         var result = _productService.CreateProduct(productCreate);
         if (result.Success)
         {
@@ -44,6 +44,29 @@ public class ProductController : Controller
         return View();
     }
 
+
+    [HttpGet]
+    public IActionResult Update(int id)
+    {
+        var product = _productService.GetUpdatedProduct(id);
+        if (product.Success)
+        {
+            return View(product.Data);
+        }
+        return NotFound();
+    }
+
+
+    [HttpPost]
+    public IActionResult Update(int id, ProductUpdateDto productUpdateDto)
+    {
+        var result = _productService.UpdateProduct(id, productUpdateDto);
+        if (result.Success)
+        {
+            return RedirectToAction("Index");
+        }
+        return View();
+    }
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

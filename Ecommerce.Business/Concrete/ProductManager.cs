@@ -91,5 +91,40 @@ public class ProductManager : IProductService
         return res;
     }
 
+    public IDataResult<ProductUpdateDto> GetUpdatedProduct(int id)
+    {
+        try
+        {
+            var product = _productDal.Get(x => x.Id == id);
+            var res = _mapper.Map<ProductUpdateDto>(product);
+            return new SuccessDataResult<ProductUpdateDto>(res);
+        }
+        catch (Exception e)
+        {
+            return new ErrorDataResult<ProductUpdateDto>();
+        }
+    }
 
+    public IResult UpdateProduct(int id, ProductUpdateDto productUpdateDtos)
+    {
+        try
+        {
+            var product = _productDal.Get(x => x.Id == id);
+            product.Name = productUpdateDtos.Name;
+            product.Price = productUpdateDtos.Price;
+            product.DiscountPrice = productUpdateDtos.DiscountPrice;
+            product.CategoryId = productUpdateDtos.CategoryId;
+            product.Description = productUpdateDtos.Description;
+            product.Information = productUpdateDtos.Information;
+            product.Stock = productUpdateDtos.Stock;
+            product.IsFeatured = productUpdateDtos.IsFeatured;
+            product.UserId = productUpdateDtos.UserId;
+            _productDal.Update(product);
+            return new SuccessResult();
+        }
+        catch (System.Exception)
+        {
+            return new ErrorResult();
+        }
+    }
 }
