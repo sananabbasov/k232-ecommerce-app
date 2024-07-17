@@ -17,7 +17,7 @@ public static class ServiceRegistration
 {
     public static void AddBusinessRegistration(this IServiceCollection services)
     {
-   
+
 
         services.AddScoped<IProductDal, EfProductDal>();
         services.AddScoped<IProductService, ProductManager>();
@@ -25,17 +25,20 @@ public static class ServiceRegistration
         services.AddScoped<ICategoryDal, EfCategoryDal>();
         services.AddScoped<ICategoryService, CategoryManager>();
 
+        services.AddScoped<IProductPhotoDal, EfProductPhotoDal>();
+        services.AddScoped<IProductPhotoService, ProductPhotoManager>();
+
         DummyData.Create();
 
 
 
-            var mapperConfig = new MapperConfiguration(mc =>
-            {
-                mc.AddProfile(new MappingProfile());
-            });
+        var mapperConfig = new MapperConfiguration(mc =>
+        {
+            mc.AddProfile(new MappingProfile());
+        });
 
-            IMapper mapper = mapperConfig.CreateMapper();
-            services.AddSingleton(mapper);
+        IMapper mapper = mapperConfig.CreateMapper();
+        services.AddSingleton(mapper);
 
 
     }

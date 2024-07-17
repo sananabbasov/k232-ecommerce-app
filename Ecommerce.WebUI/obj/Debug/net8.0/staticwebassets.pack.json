@@ -7537,6 +7537,34 @@
       "PackagePath": "staticwebassets/front/lib/owlcarousel/owl.carousel.min.js"
     },
     {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/1eb9d383-0314-4d72-96b2-5c0bbc569f7f.jpg",
+      "PackagePath": "staticwebassets/uploads/1eb9d383-0314-4d72-96b2-5c0bbc569f7f.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/25d6cecb-7e00-40ce-8e39-557b13ed2f7f.jpg",
+      "PackagePath": "staticwebassets/uploads/25d6cecb-7e00-40ce-8e39-557b13ed2f7f.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/53d33947-fb2f-4588-92d4-baed29a28126.jpg",
+      "PackagePath": "staticwebassets/uploads/53d33947-fb2f-4588-92d4-baed29a28126.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/5e1d6d81-074f-4281-b27f-4c537949ea84.jpg",
+      "PackagePath": "staticwebassets/uploads/5e1d6d81-074f-4281-b27f-4c537949ea84.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/93dcbe84-463d-4282-a017-ac0ec7f13cdf.jpg",
+      "PackagePath": "staticwebassets/uploads/93dcbe84-463d-4282-a017-ac0ec7f13cdf.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/afee74a5-29b9-46de-a580-49be63048aa0.jpg",
+      "PackagePath": "staticwebassets/uploads/afee74a5-29b9-46de-a580-49be63048aa0.jpg"
+    },
+    {
+      "Id": "/Users/sanan/Desktop/Projects/Compar Academy/K232/Web/Ecommerce/Ecommerce.WebUI/wwwroot/uploads/c8c58579-f94c-4476-8c59-4ffac422162e.jpg",
+      "PackagePath": "staticwebassets/uploads/c8c58579-f94c-4476-8c59-4ffac422162e.jpg"
+    },
+    {
       "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Ecommerce.WebUI.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

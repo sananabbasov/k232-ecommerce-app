@@ -27,17 +27,17 @@ public class ProductManager : IProductService
         _mapper = mapper;
     }
 
-    public IResult CreateProduct(ProductCreateDto productCreateDto)
+    public IDataResult<int> CreateProduct(ProductCreateDto productCreateDto)
     {
         try
         {
             var product = _mapper.Map<Product>(productCreateDto);
             _productDal.Add(product);
-            return new SuccessResult();
+            return new SuccessDataResult<int>(product.Id);
         }
         catch (Exception e)
         {
-            return new ErrorResult(e.Message);
+            return new ErrorDataResult<int>(e.Message);
         }
     }
 
@@ -102,6 +102,20 @@ public class ProductManager : IProductService
         catch (Exception e)
         {
             return new ErrorDataResult<ProductUpdateDto>();
+        }
+    }
+
+    public IResult RemoveProduct(int productId)
+    {
+        try
+        {
+            var product = _productDal.Get(x=>x.Id == productId);
+            _productDal.Delete(product);
+            return new SuccessResult();
+        }
+        catch (System.Exception)
+        {
+               return new ErrorResult();
         }
     }
 
