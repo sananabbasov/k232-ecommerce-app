@@ -42,17 +42,17 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult AddToCart(int id)
+    public JsonResult AddToCart(int id)
     {
         List<BasketDto> baskets = new();
         CookieOptions option = new CookieOptions();
-        option.Expires = DateTime.Now.AddMinutes(1);
+        option.Expires = DateTime.Now.AddMinutes(10);
         string basket = Request.Cookies["cart"];
         if (basket == null)
         {
             BasketDto basketDto = new()
             {
-                Id = id,
+                ProductId = id,
                 Quantity = 1
             };
             baskets.Add(basketDto);
@@ -61,7 +61,7 @@ public class HomeController : Controller
         else
         {
             baskets = JsonSerializer.Deserialize<List<BasketDto>>(basket);
-            var findBasket = baskets.FirstOrDefault(x => x.Id == id);
+            var findBasket = baskets.FirstOrDefault(x => x.ProductId == id);
             if (findBasket != null)
             {
                 findBasket.Quantity += 1;
@@ -70,7 +70,7 @@ public class HomeController : Controller
             {
                 BasketDto basketDto = new()
                 {
-                    Id = id,
+                    ProductId = id,
                     Quantity = 1
                 };
                 baskets.Add(basketDto);
@@ -81,7 +81,7 @@ public class HomeController : Controller
 
 
         Response.Cookies.Append("cart", basket.ToString(), option);
-        return RedirectToAction("Index", "Home");
+        return Json("Ok");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

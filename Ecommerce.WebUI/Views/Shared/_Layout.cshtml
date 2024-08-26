@@ -26,7 +26,7 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/front/css/style.css" rel="stylesheet">
 
- 
+
 </head>
 
 <body>
@@ -166,9 +166,9 @@
                                 <span class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
-                            <a href="" class="btn px-0 ml-3">
+                            <a href="/basket" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
+                                <span id="basket" class="badge text-secondary border border-secondary rounded-circle"
                                     style="padding-bottom: 2px;">0</span>
                             </a>
                         </div>
@@ -248,7 +248,7 @@
                 </p>
             </div>
             <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="img/payments.png" alt="">
+                <img class="img-fluid" src="~/front/img/payments.png" alt="">
             </div>
         </div>
     </div>
@@ -265,10 +265,29 @@
     <script src="~/front/lib/easing/easing.min.js"></script>
     <script src="~/front/lib/owlcarousel/owl.carousel.min.js"></script>
 
+    <script>
+        const basket = document.getElementById("basket")
+        const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("cart="))
+            ?.split("=")[1];
 
+        function showCookieValue() {
+            const output = document.getElementById("cookie-value");
+            let cookie = decodeURIComponent(cookieValue)
+            let result = JSON.parse(cookie)
+            let count = 0;
+            for (let i = 0; i < result.length; i++) {
+                count += result[i].Quantity;
+            }
+            basket.innerHTML = count;
+        }
+        showCookieValue()
+    </script>
 
     <!-- Template Javascript -->
     <script src="~/front/js/main.js"></script>
+    @RenderSection("scripts", false)
 
     <script>
         const rangeInput = document.querySelectorAll(".range-input input"),

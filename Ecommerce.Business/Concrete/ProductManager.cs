@@ -10,6 +10,7 @@ using Ecommerce.Core.Utilities.Results.Concrete.Error;
 using Ecommerce.Core.Utilities.Results.Concrete.Success;
 using Ecommerce.DataAccess.Abstract;
 using Ecommerce.Entities.Concrete;
+using Ecommerce.Entities.Dtos.BasketDtos;
 using Ecommerce.Entities.Dtos.ProductDtos;
 using Ecommerce.Entities.Enum;
 using Ecommerce.Entities.Payloads;
@@ -77,6 +78,30 @@ public class ProductManager : IProductService
         return mapper;
     }
 
+    public IDataResult<List<BasketProductDto>> GetProductsByIds(List<BasketDto> basketDto)
+    {
+
+        try
+        {
+            List<BasketProductDto> result = [];
+            for (int i = 0; i < basketDto.Count(); i++)
+            {
+                var product = _productDal.Get(x => x.Id == basketDto[i].ProductId);
+                var map = _mapper.Map<BasketProductDto>(product);
+                map.Price = map.DiscountPrice > 0 ? map.DiscountPrice  : map.Price;
+                map.Quantity = basketDto[i].Quantity;
+                map.TotalPrice = basketDto[i].Quantity * map.Price;
+                result.Add(map);
+            }
+            return new SuccessDataResult<List<BasketProductDto>>(result);
+        }
+        catch (Exception e)
+        {
+            return new ErrorDataResult<List<BasketProductDto>>(e.Message);
+        }
+
+    }
+
     public ProductPagination<ProductShopDto> GetShopPagination(int maxPrice, int categoryId, int currentPage, int sort, int minPrice = 0)
     {
         var result = _productDal.GetShopProducts(maxPrice, categoryId, currentPage, sort, minPrice);
@@ -109,13 +134,13 @@ public class ProductManager : IProductService
     {
         try
         {
-            var product = _productDal.Get(x=>x.Id == productId);
+            var product = _productDal.Get(x => x.Id == productId);
             _productDal.Delete(product);
             return new SuccessResult();
         }
         catch (System.Exception)
         {
-               return new ErrorResult();
+            return new ErrorResult();
         }
     }
 
@@ -136,9 +161,9 @@ public class ProductManager : IProductService
             _productDal.Update(product);
             return new SuccessResult();
         }
-        catch (System.Exception)
+        catch (Exception e)
         {
-            return new ErrorResult();
+            return new ErrorResult(e.Message);
         }
     }
 }

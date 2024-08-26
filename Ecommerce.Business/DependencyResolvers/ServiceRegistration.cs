@@ -28,6 +28,9 @@ public static class ServiceRegistration
         services.AddScoped<IProductPhotoDal, EfProductPhotoDal>();
         services.AddScoped<IProductPhotoService, ProductPhotoManager>();
 
+        services.AddScoped<IUserDal, EfUserDal>();
+        services.AddScoped<IUserService, UserManager>();
+
         DummyData.Create();
 
 

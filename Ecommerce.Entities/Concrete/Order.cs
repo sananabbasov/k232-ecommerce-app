@@ -9,6 +9,7 @@ namespace Ecommerce.Entities.Concrete;
 public class Order : BaseEntity
 {
     public string UserId { get; set; }
+    public User User { get; set; }
     public decimal TotalPrice { get; set; }
     public DateTime OrderDate { get; set; }
     public PaymentType PaymentType { get; set; }

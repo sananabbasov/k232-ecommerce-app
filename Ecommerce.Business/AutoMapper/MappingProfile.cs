@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Ecommerce.Entities.Concrete;
+using Ecommerce.Entities.Dtos.BasketDtos;
 using Ecommerce.Entities.Dtos.CategoryDtos;
 using Ecommerce.Entities.Dtos.ProductDtos;
+using Ecommerce.Entities.Dtos.UserDtos;
 
 namespace Ecommerce.Business.AutoMapper;
 
@@ -36,6 +38,10 @@ public class MappingProfile : Profile
 
 
         CreateMap<ProductUpdateDto, Product>().ReverseMap();
+
+        CreateMap<BasketProductDto, Product>().ReverseMap();
+
+        CreateMap<User,UserDto>().ReverseMap();
 
         CreateMap<Product, ProductDashboardDto>()
             .ForMember(x => x.PhotoUrl, y => y.MapFrom(x => x.ProductPhotos.FirstOrDefault().Url))

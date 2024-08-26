@@ -199,7 +199,8 @@
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="@product.PhotoUrl" alt="">
                         <div class="product-action">
-                            <a class="btn btn-outline-dark btn-square" onclick="addToCart(@product.Id)"><i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-outline-dark btn-square" onclick="addToCart(@product.Id)"><i
+                                    class="fa fa-shopping-cart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
                             <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
@@ -263,9 +264,47 @@
 </div>
 <!-- Vendor End -->
 
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script>
-    function addToCart(id) {
-        window.location = "/home/AddToCart/"+id
-    }
-</script>
+    <script>
+        function addToCart(id) {
+            $.ajax({
+                url: "/home/AddToCart/" + id,
+                type: "GET",
+        @* data: formData, *@
+                success: function (response) {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                    });
+
+                    const basket = document.getElementById("basket")
+                    const cookieValue = document.cookie
+                        .split("; ")
+                        .find((row) => row.startsWith("cart="))
+                        ?.split("=")[1];
+
+                    function showCookieValue() {
+                        const output = document.getElementById("cookie-value");
+                        let cookie = decodeURIComponent(cookieValue)
+                        let result = JSON.parse(cookie)
+                        let count = 0;
+                        for (let i = 0; i < result.length; i++) {
+                            count += result[i].Quantity;
+                        }
+                        console.log(count)
+                        basket.innerHTML = count;
+                    }
+                    showCookieValue()
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+                        });
+                    }
+
+
+    </script>
+}
